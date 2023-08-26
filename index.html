@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button id="openPopup">Open Website Viewer</button>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <input type="text" id="urlInput" placeholder="Enter URL">
+            <button id="loadButton">Load</button>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+    <iframe id="iframe" style="display: none;"></iframe>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openPopupButton = document.getElementById('openPopup');
+            const closePopupButton = document.getElementById('closePopup');
+            const loadButton = document.getElementById('loadButton');
+            const popup = document.getElementById('popup');
+            const iframe = document.getElementById('iframe');
+            const urlInput = document.getElementById('urlInput');
+
+            openPopupButton.addEventListener('click', () => {
+                popup.style.display = 'flex';
+            });
+
+            closePopupButton.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+
+            loadButton.addEventListener('click', () => {
+                const url = urlInput.value;
+                iframe.src = url;
+                iframe.style.display = 'block';
+                popup.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
